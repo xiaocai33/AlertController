@@ -15,6 +15,7 @@
 		33EA5C1F1CB21708000C9615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33EA5C1D1CB21708000C9615 /* LaunchScreen.storyboard */; };
 		33EA5C2A1CB21708000C9615 /* UIAlertControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5C291CB21708000C9615 /* UIAlertControllerTests.m */; };
 		33EA5C351CB21708000C9615 /* UIAlertControllerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5C341CB21708000C9615 /* UIAlertControllerUITests.m */; };
+		33EA5C441CB23F3B000C9615 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5C431CB23F3B000C9615 /* AlertController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		33EA5C301CB21708000C9615 /* UIAlertControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIAlertControllerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33EA5C341CB21708000C9615 /* UIAlertControllerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAlertControllerUITests.m; sourceTree = "<group>"; };
 		33EA5C361CB21708000C9615 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33EA5C421CB23F3B000C9615 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
+		33EA5C431CB23F3B000C9615 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				33EA5C1D1CB21708000C9615 /* LaunchScreen.storyboard */,
 				33EA5C201CB21708000C9615 /* Info.plist */,
 				33EA5C0F1CB21708000C9615 /* Supporting Files */,
+				33EA5C421CB23F3B000C9615 /* AlertController.h */,
+				33EA5C431CB23F3B000C9615 /* AlertController.m */,
 			);
 			path = UIAlertController;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33EA5C441CB23F3B000C9615 /* AlertController.m in Sources */,
 				33EA5C171CB21708000C9615 /* ViewController.m in Sources */,
 				33EA5C141CB21708000C9615 /* AppDelegate.m in Sources */,
 				33EA5C111CB21708000C9615 /* main.m in Sources */,

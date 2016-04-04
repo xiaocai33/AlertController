@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AlertController.h"
 
 @interface ViewController ()
 
@@ -38,7 +39,7 @@
     UIAlertControllerStyleActionSheet: UIActionSheet样式
     UIAlertControllerStyleAlert: UIAlertView样式
      */
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"消息" message:@"详细信息" preferredStyle:UIAlertControllerStyleAlert];
+    AlertController *alert = [AlertController alertControllerWithTitle:@"消息" message:@"详细信息" preferredStyle:UIAlertControllerStyleAlert];
     
     //添加按钮
     /*
@@ -51,8 +52,21 @@
         NSLog(@"cancel");
     }];
     
+    
     UIAlertAction *destructive = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"destructive");
+        
+        //点击确认按钮时,获取文本框的内容(这样写导致了循环引用)
+        NSArray *textArray = [alert textFields];
+        UITextField *nameText = textArray[0];
+        UITextField *pwdText = textArray[1];
+        
+        if ([nameText.text isEqualToString:@"123"] && [pwdText.text isEqualToString:@"456"]) {
+            NSLog(@"登录成功");
+        }else{
+            NSLog(@"账号密码错误");
+        }
+        
     }];
     
 //    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"默认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -64,17 +78,23 @@
     //[alert addAction:defaultAction];
     
     //添加文本框
-    
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.font = [UIFont systemFontOfSize:16];
-        textField.placeholder = @"name";
+        textField.placeholder = @"account";
+        textField.textColor = [UIColor blueColor];
+        
         //监听文本框内容改变
         [textField addTarget:self action:@selector(didTextChange:) forControlEvents:UIControlEventEditingChanged];
+        
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameDidChange:) name:UITextFieldTextDidChangeNotification object:textField];（要在点击确定或取消的时候，销毁通知，不建议使用）
+        
     }];
     
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"password";
+        textField.font = [UIFont systemFontOfSize:16];
         textField.secureTextEntry = YES;
+        textField.textColor = [UIColor greenColor];
     }];
     
     
