@@ -40,6 +40,23 @@
     UIAlertControllerStyleAlert: UIAlertView样式
      */
     AlertController *alert = [AlertController alertControllerWithTitle:@"消息" message:@"详细信息" preferredStyle:UIAlertControllerStyleAlert];
+    __weak typeof(alert) weakAlert = alert;
+    UIAlertAction *destructive = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"destructive");
+        
+        //点击确认按钮时,获取文本框的内容(这样写导致了循环引用)
+        NSArray *textArray = [weakAlert textFields];
+        UITextField *nameText = textArray[0];
+        UITextField *pwdText = textArray[1];
+        
+        if ([nameText.text isEqualToString:@"123"] && [pwdText.text isEqualToString:@"456"]) {
+            NSLog(@"登录成功");
+        }else{
+            NSLog(@"账号密码错误");
+        }
+        
+    }];
+    [alert addAction:destructive];
     
     //添加按钮
     /*
@@ -52,29 +69,12 @@
         NSLog(@"cancel");
     }];
     
-    
-    UIAlertAction *destructive = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"destructive");
-        
-        //点击确认按钮时,获取文本框的内容(这样写导致了循环引用)
-        NSArray *textArray = [alert textFields];
-        UITextField *nameText = textArray[0];
-        UITextField *pwdText = textArray[1];
-        
-        if ([nameText.text isEqualToString:@"123"] && [pwdText.text isEqualToString:@"456"]) {
-            NSLog(@"登录成功");
-        }else{
-            NSLog(@"账号密码错误");
-        }
-        
-    }];
-    
 //    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"默认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //        NSLog(@"default");
 //    }];
     
     [alert addAction:cancel];
-    [alert addAction:destructive];
+    
     //[alert addAction:defaultAction];
     
     //添加文本框
