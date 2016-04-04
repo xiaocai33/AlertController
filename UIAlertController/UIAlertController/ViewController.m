@@ -40,11 +40,21 @@
     UIAlertControllerStyleAlert: UIAlertView样式
      */
     AlertController *alert = [AlertController alertControllerWithTitle:@"消息" message:@"详细信息" preferredStyle:UIAlertControllerStyleAlert];
+    
+    //添加按钮
+    /*
+     UIAlertActionStyleDefault 默认
+     UIAlertActionStyleCancel 取消
+     UIAlertActionStyleDestructive 确认毁灭性的操作
+     */
+    
+    //解决循环引用问题
     __weak typeof(alert) weakAlert = alert;
+    
     UIAlertAction *destructive = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"destructive");
         
-        //点击确认按钮时,获取文本框的内容(这样写导致了循环引用)
+        //点击确认按钮时,获取文本框的内容
         NSArray *textArray = [weakAlert textFields];
         UITextField *nameText = textArray[0];
         UITextField *pwdText = textArray[1];
@@ -56,14 +66,6 @@
         }
         
     }];
-    [alert addAction:destructive];
-    
-    //添加按钮
-    /*
-     UIAlertActionStyleDefault 默认
-     UIAlertActionStyleCancel 取消
-     UIAlertActionStyleDestructive 确认毁灭性的操作
-     */
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"cancel");
@@ -74,7 +76,7 @@
 //    }];
     
     [alert addAction:cancel];
-    
+    [alert addAction:destructive];
     //[alert addAction:defaultAction];
     
     //添加文本框
